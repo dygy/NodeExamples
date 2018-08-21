@@ -1,0 +1,22 @@
+   {
+  "name": "node",
+  "version": "1.0.0",
+  "description": "examples ",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "examples"
+  ],
+  "author": "Dygy",
+  "license": "MIT"
+}
