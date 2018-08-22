@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>nums</title>
+</head>
+<body>
+<h1><strong>Numbers Page for - <%= numberID %> </strong></h1>
+<p><b>Title :</b><%= obj.title %></p>
+<p><b>ID:</b><%= obj.id %></p>
+<ul>
+    <%
+
+    obj.paragraphs.forEach(function (item) {
+ %>
+    <li><%= item  %>
+    </li>
+    <%
+    }); %>
+</ul>
+</body>
+</html>
