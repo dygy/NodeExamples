@@ -10,7 +10,7 @@ app.set("view engine","ejs");
 app.use('/examples',express.static('public'));
 
 app.get('/', function (req, res) {
-   res.send('Home Page');
+    res.send('Home Page');
 });
 app.get('/news', function (req, res) {
     res.render('news');
@@ -19,9 +19,12 @@ app.get('/news/:num', function (req, res) {
     res.send('News Page number ' + req.params.id);
 });
 app.get('/number/:id', function (req, res) {
+    //send filters,ids
+    console.log(req.query);
+
     const obj = {
         title:'Number',
-           id:req.params.id,
+        id:req.params.id,
         paragraphs: ['PH', 'PH1', 'PH2', 4]
     };
     res.render('nums',{numberID : req.params.id, obj : obj });
