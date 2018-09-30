@@ -26,6 +26,7 @@ app.get('/number/:id', function (req, res) {
     };
     res.render('nums',{numberID : req.params.id, obj : obj });
 });
+//i just want to post smth  in september on github. But it took whole september to learn CCNA and some metal stuff.
 app.post('/number/:id',urlencodedParser, function (req, res) {
     if (!req.body) return res.sendStatus(400);
     console.log(req.body);
