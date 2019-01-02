@@ -4,16 +4,23 @@
   "description": "examples ",
   "main": "index.js",
   "directories": {
-    "example": "examples"
+    "example": "examples",
+    "projects": "projects"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "nodemon": "^1.18.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-plugin-node": "^8.0.0",
+    "prettier": "1.15.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node projects/index.js",
+    "dev": "nodemon projects/index.js"
   },
   "keywords": [
     "node",
