@@ -6,15 +6,20 @@
 </head>
 <body>
 <h1><strong>ERROR 404</strong></h1>
-<div style="text-align: center;"><p>Page not found</p></div>
-<%= data%>
+<div style="text-align: left;"><p>Page not found</p></div>
 <a href="/create">Add</a>
 <ul>
-    <% arr.forEach(function(item){ %>
-       <li>
-        <%= item %>
-       </li>
-    <% })%>
+    <% posts.forEach(function(post){ %>
+        <li>
+            <b>
+                <%= post.title %>
+            </b>
+            <br>
+            <%= post.body %>
+        </li>
+        <br>
+    <% }); %>
 </ul>
+</div>
 </body>
 </html>

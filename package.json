@@ -9,17 +9,22 @@
   },
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cross-env": "^5.2.0",
     "ejs": "^2.6.1",
+    "eslint-config-prettier": "^3.3.0",
     "express": "^4.16.3",
-    "nodemon": "^1.18.9"
+    "mongoose": "^4.13.7"
   },
   "devDependencies": {
     "eslint": "^5.11.1",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-node": "^8.0.0",
-    "prettier": "1.15.3"
+    "prettier": "1.15.3",
+    "prettier-eslint": "^8.8.2",
+    "nodemon": "^1.18.9"
   },
   "scripts": {
-    "start": "node projects/index.js",
+    "start": "cross-env PORT=3001 node projects/index.js",
     "dev": "nodemon projects/index.js"
   },
   "keywords": [
