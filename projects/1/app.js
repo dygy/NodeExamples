@@ -8,7 +8,11 @@ const app = express();
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static(path.join(__dirname,'public')));
+app.use(
+  '/javascript',
+  express.static(path.join(__dirname, 'node_modules','jquery','dist'))
+);
 app.get('/', (req, res) => {
   Post.find({})
     .then(posts => {
