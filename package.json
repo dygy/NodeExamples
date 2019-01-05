@@ -8,16 +8,17 @@
     "projects": "projects"
   },
   "dependencies": {
-    "browser-sync": "^2.23.6",
     "body-parser": "^1.18.3",
+    "browser-sync": "^2.23.6",
     "cross-env": "^5.2.0",
     "ejs": "^2.6.1",
     "eslint-config-prettier": "^3.3.0",
     "express": "^4.16.3",
-    "gulp": "^4.0.0",
-    "gulp-autoprefixer": "^6.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
     "gulp-cssnano": "^2.1.3",
-    "gulp-sass": "^4.0.2",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^4.0.1",
     "jquery": "^3.3.1",
     "mongoose": "^4.13.7"
   },
@@ -33,7 +34,7 @@
     "start": "cross-env PORT=3001 node projects/1/index.js",
     "dev": "nodemon projects/1/index.js",
     "start2": "cross-env PORT=3001 node projects/2/index.js",
-    "dev2": "cd projects cd 2 gulp"
+    "dev2": "gulp --gulpfile=projects/2/gulpfile.js"
   },
   "keywords": [
     "node",
