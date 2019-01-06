@@ -1,0 +1,25 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  border-left: white;
+  h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.7em;
+  }
+
+  form {
+
+    .login-button {
+      justify-content: center;
+      margin-bottom: 2px;
+      //    align-self: flex-end;
+    }
+    .signup-button {
+      justify-content: center;
+      margin-bottom: 2px;
+      //    align-self: flex-end;
+    }
+  }
+}
