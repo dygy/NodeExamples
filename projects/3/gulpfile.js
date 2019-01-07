@@ -1,37 +1,42 @@
-const gulp = require('gulp');
-const sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
-const cssnano = require('gulp-cssnano');
-const browserSync = require('browser-sync');
-const plumber = require('gulp-plumber');
-
-gulp.task('scss', () => {
-  return (
-    gulp
-      .src('dev/scss/**/*.scss')
-      .pipe(plumber())
-      .pipe(sass())
-      .pipe(
-        autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], {
-          cascade: true
-        })
-      )
-      .pipe(cssnano())
-      .pipe(gulp.dest(__dirname+'/dist/css'))
-      .pipe(browserSync.reload({ stream: true }))
-  );
+const gulp = require("gulp"),
+  browserSync = require("browser-sync").create(),
+  nodemon = require("gulp-nodemon"),
+  plumber = require('gulp-plumber'),
+  sass = require('gulp-sass');
+gulp.task('scss', function () {
+  return gulp.src('./dev/scss/style.scss')
+    .pipe(plumber())
+    .pipe(sass())
+    .pipe(gulp.dest('./dist/css'));
 });
 
-gulp.task('browser-sync', () => {
-  browserSync({
-    server: {
-      baseDir: './dist'
-    },
-    notify: false
+gulp.task('watch', function () {
+  gulp.watch('./dev/scss//**/*.scss', ['scss']);
+  gulp.watch(".views/**/*.ejs").on('change', browserSync.reload);
+  gulp.watch(".dist/**/*.css").on('change', browserSync.reload);
+});
+
+
+gulp.task('browser-sync', ['nodemon'], function() {
+  browserSync.init(null, {
+    proxy: "http://localhost:3000",
+    files: ["public/**/*.*"],
+    browser: "chrome",
+    port: 7000,
   });
 });
 
-gulp.task('default', ['browser-sync', 'scss'], () => {
-  gulp.watch('dev/scss/**/*.scss', ['scss']);
-  gulp.watch('dist/*.html', browserSync.reload);
+gulp.task('nodemon', function (cb) {
+  let started = false;
+  return nodemon({
+    //  script: './index.js'
+  }).on('start', function () {
+    if (!started) {
+      cb();
+      started = true;
+    }
+  });
 });
+
+
+gulp.task('default', ['scss','watch','browser-sync']);

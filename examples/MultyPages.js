@@ -5,7 +5,7 @@ let server = http.createServer(function (req,res) {
     console.log('URL of page ' + req.url);
     if (req.url === '/index'||req.url === '/') {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-        let readShort = fs.createReadStream(__dirname+'/index.html','utf8');
+        let readShort = fs.createReadStream(__dirname+'/index.ejs','utf8');
         readShort.pipe(res);
     }
     else if (req.url === '/stream' ){
@@ -24,7 +24,7 @@ let server = http.createServer(function (req,res) {
     }
     else if (req.url === '/html') {
         res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-        fs.createReadStream(__dirname+'/index.html','utf8').pipe(res);
+        fs.createReadStream(__dirname+'/index.ejs','utf8').pipe(res);
     }
     else {
         res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'});

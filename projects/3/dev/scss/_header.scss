@@ -18,14 +18,14 @@
     padding: 0 $freeSpace 0 $freeSpace;
 
     .logo {
-      background-image: url('../img/logo2.png');
-      background-repeat: no-repeat;
+      background: url('../img/logo2.png') no-repeat;
       background-size: contain;
       background-position: center;
-      width: 120px;
-      height: $headerHeight - 3;
+      // background-color: lightcoral;
+      width: 110px;
+      height: $headerHeight - 2;
       margin-top: 3px;
-    }
+  }
 
     .menu {
       display: flex;
@@ -38,7 +38,6 @@
           color: $whiteColor;
 
       }
-
       li {
         a {
           color: $whiteColor;

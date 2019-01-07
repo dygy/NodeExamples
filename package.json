@@ -10,6 +10,7 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "browser-sync": "^2.23.6",
+    "browser-sync-ejs": "^0.2.2",
     "cross-env": "^5.2.0",
     "ejs": "^2.6.1",
     "eslint-config-prettier": "^3.3.0",
@@ -17,6 +18,9 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-cssnano": "^2.1.3",
+    "gulp-less": "^4.0.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-nodemon": "^2.4.2",
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.1",
     "jquery": "^3.3.1",
@@ -35,7 +39,8 @@
     "dev": "nodemon projects/1/index.js",
     "start2": "cross-env PORT=3001 node projects/2/index.js",
     "dev2": "gulp --gulpfile=projects/2/gulpfile.js",
-    "dev3": "gulp --gulpfile=projects/3/gulpfile.js"
+    "dev3": "gulp --gulpfile=projects/3/gulpfile.js",
+    "dev3.1": "nodemon projects/3/index.js"
   },
   "keywords": [
     "node",
