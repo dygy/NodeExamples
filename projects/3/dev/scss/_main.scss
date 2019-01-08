@@ -20,6 +20,7 @@
       flex-direction: column;
 
       .box {
+        border-radius: $borderRadius;
         margin-bottom: $freeSpace;
         padding: $freeSpace;
         width: 100%;

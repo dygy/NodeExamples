@@ -8,25 +8,30 @@
     "projects": "projects"
   },
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.18.3",
-    "browser-sync": "^2.23.6",
-    "browser-sync-ejs": "^0.2.2",
     "cross-env": "^5.2.0",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "eslint-config-prettier": "^3.3.0",
     "express": "^4.16.3",
     "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-uglifyjs": "^0.6.2",
+    "jquery": "^3.3.1",
+    "mongoose": "^4.13.7",
+    "static-asset": "^0.6.0"
+  },
+  "devDependencies": {
     "gulp-autoprefixer": "^5.0.0",
     "gulp-cssnano": "^2.1.3",
     "gulp-less": "^4.0.1",
     "gulp-minify-css": "^1.2.4",
-    "gulp-nodemon": "^2.4.2",
     "gulp-plumber": "^1.2.0",
     "gulp-sass": "^4.0.1",
-    "jquery": "^3.3.1",
-    "mongoose": "^4.13.7"
-  },
-  "devDependencies": {
+    "browser-sync-ejs": "^0.2.2",
+    "browser-sync": "^2.23.6",
     "eslint": "^5.11.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-node": "^8.0.0",
@@ -35,12 +40,13 @@
     "prettier-eslint": "^8.8.2"
   },
   "scripts": {
-    "start": "cross-env PORT=3001 node projects/1/index.js",
-    "dev": "nodemon projects/1/index.js",
+    "start1": "cross-env PORT=3001 node projects/1/index.js",
+    "nodemon1": "nodemon projects/1/index.js",
     "start2": "cross-env PORT=3001 node projects/2/index.js",
-    "dev2": "gulp --gulpfile=projects/2/gulpfile.js",
-    "dev3": "gulp --gulpfile=projects/3/gulpfile.js",
-    "dev3.1": "nodemon projects/3/index.js"
+    "gulp2": "gulp --gulpfile=projects/2/gulpfile.js",
+    "gulpemon3": "gulp --gulpfile=projects/3/gulpfile.js",
+    "nodevon3": "nodemon projects/3/app.js",
+    "start3": "node projects/3/app.js"
   },
   "keywords": [
     "node",

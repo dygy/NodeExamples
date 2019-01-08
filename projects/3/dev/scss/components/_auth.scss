@@ -10,16 +10,12 @@
   }
 
   form {
+    .buttons {
+      display: flex;
 
-    .login-button {
-      justify-content: center;
-      margin-bottom: 2px;
-      //    align-self: flex-end;
     }
-    .signup-button {
-      justify-content: center;
-      margin-bottom: 2px;
-      //    align-self: flex-end;
-    }
+  }
+  .register{
+    display: none;
   }
 }

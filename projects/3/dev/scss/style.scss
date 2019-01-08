@@ -4,9 +4,11 @@ $greyColor: #e8e8e8;
 $primaryColor: #000000;
 $secondaryColor: #d9ab4d;
 $freeSpace: 15px;
+$successColor: #87bf0a;
+$errorColor: #e82c0c;
 $headerHeight: 70px;
 $footerHeight: 50px;
-
+$borderRadius: 6px;
 @import 'reset';
 @import 'grid';
 @import 'typography';

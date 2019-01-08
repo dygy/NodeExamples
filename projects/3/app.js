@@ -1,38 +1,58 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
-const Post = require('./models/post');
+const config = require("./config");
+const mongoose = require("mongoose");
+const staticAsset = require('static-asset');
+const routes = require('./routes');
+
+
+mongoose.Promise = global.Promise;
+mongoose.set('debug', config.IS_PRODUCTION);
+mongoose.connection
+  .on('error', error => console.log(error))
+  .on('close', () => console.log('Database connection closed.'))
+  .once('open', () => {
+    const info = mongoose.connections[0];
+    console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+  });
+mongoose.connect(config.MONGO_URL, { useMongoClient: true });
+
 
 const app = express();
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname,'dist')));
+app.use(staticAsset(path.join(__dirname, 'dist')));
+app.use(staticAsset(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "views")));
 app.use(
-  '/javascript',
-  express.static(path.join(__dirname, 'node_modules','jquery','dist'))
+  "script",
+  express.static(path.join(__dirname, "node_modules", "jquery", "dist"))
 );
+
 app.get('/', (req, res) => {
-  Post.find({})
-    .then(posts => {
-      res.render('index', { posts: posts });
-    })
-    .catch(err => {
-      res.status(200).json({ err: err });
-    });
+  res.render('index');
+});
+app.use('/api/auth', routes.auth);
+
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-app.get('/create', (req, res) => res.render('create'));
-app.post('/create', (req, res) => {
-  const { title, body } = req.body;
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.render('error', {
+    message: error.message,
+    error: !config.IS_PRODUCTION ? error : {}
+  });
 
-  Post.create({
-    title: title,
-    body: body
-  }).then(post => console.log(post.id));
-
-  res.redirect('/');
 });
 
-module.exports = app;
+app.listen(config.PORT, () =>
+  console.log(`Example app listening on port ${config.PORT}!`)
+);

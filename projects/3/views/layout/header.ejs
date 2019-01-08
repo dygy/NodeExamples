@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="<%= assetFingerprint('css/style.css') %>">
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    <script src="jquery.blink.js"></script>
+    <script>
+      function blinker() {
+        $('.blink_me').fadeOut(2500);
+        $('.blink_me').fadeIn(2000);
+      }
+
+      setInterval(blinker, 1000);
+    </script>
 </head>
+
 <body>
-<link rel="stylesheet" href="stylesheets/style.css">
+<body>
+<header class="header">
+    <div class="container">
+        <a href="/" class="logo"></a>
+        <div class="menu">
+            <h1><strong class="blink_me"> Bullet Club</strong></h1>
+        </div>
+        <ul class="menu">
+            <li>
+                <a href="/">Welcome to the Club</a>
+            </li>
+        </ul>
+    </div>
+</header>
