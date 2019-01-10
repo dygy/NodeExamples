@@ -1,6 +1,8 @@
 
 <div class="sidebar">
     <div class="box auth">
+        <% if(!user.id && !user.login) { %>
+
         <form method="post" class="login">
         <h2>Log In</h2>
             <div class="form-group">
@@ -27,7 +29,7 @@
                 <input type="password" id="register-password" name="password" />
             </div>
             <div class="form-group">
-                <label for="register-confirm-password">Confrim password</label>
+                <label for="register-confirm-password">Confirm password</label>
                 <input type="password" id="register-password-confirm" name="passwordConfirm" />
             </div>
            <%/*
@@ -39,6 +41,11 @@
             <button class="register-button button">Sign Up</button>
             <button class="switch-button secondary-inverse">Log In</button>
         </form>
+            <% } else { %>
+                <p>
+                    Welcome, <%= user.login %>! <a href="/api/auth/logout">Exit</a>
+                </p>
+            <% } %>
     </div>
     <div class="box">Plugins</div>
 </div>

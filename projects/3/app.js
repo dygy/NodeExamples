@@ -5,7 +5,9 @@ const config = require("./config");
 const mongoose = require("mongoose");
 const staticAsset = require('static-asset');
 const routes = require('./routes');
+const session = require('express-session');
 
+const MongoStore = require('connect-mongo')(session);
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', config.IS_PRODUCTION);
@@ -20,10 +22,25 @@ mongoose.connect(config.MONGO_URL, { useMongoClient: true });
 
 
 const app = express();
-app.use(express.static("public"));
-app.set("views", path.join(__dirname, "views"));
+
+// sessions
+app.use(
+  session({
+    secret: config.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
+);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static("public"));
+app.set("views", path.join(__dirname, "views"));
+
+app.use(bodyParser.json());
 app.use(staticAsset(path.join(__dirname, 'dist')));
 app.use(staticAsset(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, "dist")));
@@ -34,7 +51,15 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  res.render('index');
+  const id = req.session.userId;
+  const login = req.session.userLogin;
+
+  res.render('index', {
+    user: {
+      id,
+      login
+    }
+  });
 });
 app.use('/api/auth', routes.auth);
 
