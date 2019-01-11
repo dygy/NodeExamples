@@ -3,23 +3,27 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const config = require("./config");
 const mongoose = require("mongoose");
-const staticAsset = require('static-asset');
-const routes = require('./routes');
-const session = require('express-session');
+const staticAsset = require("static-asset");
+const routes = require("./routes");
+const session = require("express-session");
 
-const MongoStore = require('connect-mongo')(session);
+const MongoStore = require("connect-mongo")(session);
 
 mongoose.Promise = global.Promise;
-mongoose.set('debug', config.IS_PRODUCTION);
+mongoose.set("debug", config.IS_PRODUCTION);
 mongoose.connection
-  .on('error', error => console.log(error))
-  .on('close', () => console.log('Database connection closed.'))
-  .once('open', () => {
+  .on("error", error => console.log(error))
+  .on("close", () => console.log("Database connection closed."))
+  .once("open", () => {
     const info = mongoose.connections[0];
     console.log(`Connected to ${info.host}:${info.port}/${info.name}`);
+    // need to be comment after generated
+    // require('./mocks')();
   });
-mongoose.connect(config.MONGO_URL, { useMongoClient: true });
-
+mongoose.connect(
+  config.MONGO_URL,
+  { useMongoClient: true }
+);
 
 const app = express();
 
@@ -41,8 +45,8 @@ app.use(express.static("public"));
 app.set("views", path.join(__dirname, "views"));
 
 app.use(bodyParser.json());
-app.use(staticAsset(path.join(__dirname, 'dist')));
-app.use(staticAsset(path.join(__dirname, 'views')));
+app.use(staticAsset(path.join(__dirname, "dist")));
+app.use(staticAsset(path.join(__dirname, "views")));
 app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.static(path.join(__dirname, "views")));
 app.use(
@@ -50,32 +54,23 @@ app.use(
   express.static(path.join(__dirname, "node_modules", "jquery", "dist"))
 );
 
-app.get('/', (req, res) => {
-  const id = req.session.userId;
-  const login = req.session.userLogin;
-
-  res.render('index', {
-    user: {
-      id,
-      login
-    }
-  });
-});
-app.use('/api/auth', routes.auth);
+// routes
+app.use('/', routes.archive);
+app.use("/api/auth", routes.auth);
+app.use("/post", routes.post);
 
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
+  const err = new Error("Not Found");
   err.status = 404;
   next(err);
 });
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
-  res.render('error', {
+  res.render("error", {
     message: error.message,
     error: !config.IS_PRODUCTION ? error : {}
   });
-
 });
 
 app.listen(config.PORT, () =>

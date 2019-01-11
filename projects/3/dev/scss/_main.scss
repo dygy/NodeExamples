@@ -37,6 +37,15 @@
         margin-right: 0;
         margin-bottom: $freeSpace;
       }
+      .pagination {
+        font-size: 1.15em;
+        .old {
+          float: right;
+        }
+        .new {
+          float: left;
+        }
+      }
 
       .sidebar {
         flex-direction: row;

@@ -34,7 +34,9 @@ gulp.task("browser-sync", ["nodemon"], function() {
 gulp.task("scripts", () =>
   gulp
     .src([
-      "./dev/script/auth.js"
+      './dev/script/auth.js',
+      './dev/script/post.js',
+      '../../node_modules/medium-editor/dist/js/medium-editor.min.js'
       //
     ])
     .pipe(concat("script.js"))
