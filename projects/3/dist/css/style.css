@@ -87,7 +87,6 @@ form {
   border-radius: 36px; }
   form .form-group {
     vertical-align: middle;
-    text-align: center;
     margin-bottom: 15px; }
     form .form-group label {
       font-size: 1em; }
@@ -629,6 +628,23 @@ body {
   border: 1px solid #e8e8e8;
   background-color: #fff;
   border-radius: 6px; }
+  .add-post .top h2 {
+    margin-top: 0; }
+  .add-post .body p {
+    text-align: justify; }
+  .add-post .bottom {
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between; }
+
+.add-post {
+  margin-bottom: 15px;
+  padding: 15px;
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  border-radius: 6px; }
   .add-post h2 {
     margin-top: 0;
     margin-bottom: 30px; }
@@ -638,7 +654,7 @@ body {
     .add-post form .buttons button {
       margin-left: 30px; }
   .add-post form #post-body {
-    min-height: 500px !important;
+    min-height: 200px !important;
     background-color: #fff !important;
     border: 1px solid #e8e8e8;
     padding: 8px 10px;

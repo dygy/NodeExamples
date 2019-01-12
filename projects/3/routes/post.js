@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const TurndownService = require("turndown");
 const models = require("../models");
+
+
 // GET for add
 router.get('/add', (req, res) => {
   const userId = req.session.userId;
@@ -10,7 +12,7 @@ router.get('/add', (req, res) => {
   if (!userId || !userLogin) {
     res.redirect('/');
   } else {
-    res.render('post/add', {
+    res.render('./post/add', {
       user: {
         id: userId,
         login: userLogin

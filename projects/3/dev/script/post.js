@@ -32,7 +32,7 @@ $(function() {
       type: 'POST',
       data: JSON.stringify(data),
       contentType: 'application/json',
-      url: './post/add'
+      url: 'add'
     }).done(function(data) {
       console.log(data);
       if (!data.ok) {

@@ -52,7 +52,7 @@
     "start2": "cross-env PORT=3001 node projects/2/index.js",
     "gulp2": "gulp --gulpfile=projects/2/gulpfile.js",
     "gulpemon3": "gulp --gulpfile=projects/3/gulpfile.js",
-    "nodevon3": "nodemon projects/3/app.js",
+    "nodemon3": "nodemon projects/3/app.js",
     "start3": "node projects/3/app.js"
   },
   "keywords": [
